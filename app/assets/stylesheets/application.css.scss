@@ -1,0 +1,94 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+ @import 'bootstrap';
+ @import "summernote-bs4";
+ @import "scaffolds";
+//include mixins
+//extend classes
+
+.main-row {
+    @extend .p-2;
+    @extend .bg-dark;
+}
+.page_image {
+    max-width: 100%;
+    height: auto;
+    @extend .img-fluid;
+}
+.page {
+    @extend .px-2;
+    @extend .pb-3;
+}
+.page_navigation {
+    @extend .row;
+}
+.side-bar {
+    @extend .col-2;
+}
+.site-wrap {
+    @extend .container;
+}
+.body-wrap {
+    margin-left: 50px;
+    @extend .col-9;
+    @extend .container;
+}
+.comment-bar {
+    @extend .bg-light;
+}
+.notice {
+    @extend .my-2;
+    @extend .alert-info;
+    @extend .container;
+}
+.alert {
+    @extend .row;
+    @extend .my-2;
+    @extend .alert-warning;
+    @extend .container;
+}
+.main-title {
+    margin-left: -10px;
+    position: absolute;
+    z-index: -1;
+}
+.main-title-click-me {
+    width: 30px;
+    height: 150px;
+}
+.sign-up-button {
+    @extend .col-2;
+    @extend .my-2;
+}
+.sign-in-button {
+    @extend .col-2;
+    @extend .my-2;
+}
+.chapter-border {
+    position: absolute;
+    z-index: -1;
+    margin-top: -54px;
+    margin-left: -18px;
+    width: 300px;
+}
+.main-area {
+
+}
+.blue-text {
+    color: #6b9195;
+}
+.flex-me {
+    display: flex;
+}

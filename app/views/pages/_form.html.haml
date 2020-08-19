@@ -1,0 +1,34 @@
+= form_with(model: @page) do |f|
+  - if @page.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@page.errors.count, "error")} prohibited this page from being saved:"
+      %ul
+        - @page.errors.full_messages.each do |message|
+          %li= message
+  = @chapter_message
+  %br
+  title:
+  %br
+  = f.text_area :title
+  %br
+  additional page information, announcements, memes, etc.:
+  %br
+  = f.text_area :text, 'data-provider': :summernote
+  %br
+  chapter number
+  %br
+  - chaps = Chapter.order(order: :desc)
+  - @page.chapter_id = chaps.first.id
+  = f.select(:chapter_id, chaps.collect {|c| [c.title, c.id] })
+  %br
+  page position in chapter (0 defaults to last page of chapter):
+  %br
+  = f.number_field :order, {min: 0, step: 1}
+  %br
+  page media:
+  %br
+  = f.file_field :media
+  %br
+  %br
+  .actions
+    = f.submit 'Save'

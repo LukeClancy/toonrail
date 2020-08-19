@@ -1,0 +1,7 @@
+.page
+  %h3.page_title
+    = "#{@page.chapter.title} - #{@page.title}"
+  = image_tag(@page.media_url, class: "page_image") if @page.media
+  %br
+  %p.page_text
+    = @page.text

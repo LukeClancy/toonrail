@@ -1,0 +1,34 @@
+!!!
+%html
+  %head
+    %title MidCity
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = image_tag "MidCity2.png", class: "main-title"
+    = link_to root_path do
+      .main-title-click-me
+    .site-wrap
+      .row
+        .body-wrap
+          - if not notice.nil? and notice != ""
+            - logger.info "NOTICE___________________"
+            - logger.info notice
+            %p.notice
+              = notice
+          - if not alert.nil? and alert != ""
+            %p.alert
+              = alert
+          .main-area
+            = yield
+          .comment-bar
+            .col-8
+            .sign-up-button
+              = button_to "Sign Up",  '/users/sign_up', { method: :get }
+            .sign-in-button
+              = button_to "Sign In", '/users/sign_in', { method: :get }
+        .side-bar
+          = image_tag "border.png", class: "chapter-border"
+          = render 'chapters/index'

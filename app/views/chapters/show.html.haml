@@ -1,0 +1,5 @@
+- @pages = @chapter.pages.order(order: :asc)
+= render '/pages/index'
+= link_to 'Edit', "#{sequential_chapter_url(@chapter)}/edit"
+= link_to 'Back', chapters_path
+= link_to 'Destroy', "#{sequential_chapter_url(@chapter)}", data: {confirm: "Are you sure? This will also delete the chapter's pages"}, method: :delete

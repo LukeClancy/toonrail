@@ -1,0 +1,23 @@
+- meta_chapters = get_meta_chapters()
+- norm_chapters = get_norm_chapters()
+- meta_chapters.each do |chapter|
+  %h3
+    = link_to chapter.title, sequential_chapter_url(chapter), class: "blue-text"
+  - if false
+    .row
+      = link_to 'Show', chapter
+      = link_to 'Edit', edit_chapter_path(chapter)
+      = link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' }
+  = render 'pages/page_list', pages: chapter.pages
+- norm_chapters.each do |chapter|
+  %h3
+    = link_to chapter.title, sequential_chapter_url(chapter), class: "blue-text"
+  - if false
+    .row
+      = link_to 'Show', chapter
+      = link_to 'Edit', edit_chapter_path(chapter)
+      = link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' }
+  - @pages = chapter.pages
+  = render 'pages/page_list', pages: chapter.pages
+%br
+= link_to 'New Chapter', new_chapter_path

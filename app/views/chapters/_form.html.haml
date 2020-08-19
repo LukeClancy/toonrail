@@ -1,0 +1,26 @@
+= form_for @chapter do |f|
+  - if @chapter.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@chapter.errors.count, "error")} prohibited this chapter from being saved:"
+      %ul
+        - @chapter.errors.full_messages.each do |message|
+          %li= message
+  chapter title:
+  %br
+  = f.text_field :title
+  %br
+  sequential order of chapter:
+  %br
+  = f.number_field :order, {min: 1, step: 1, max: @lastChapterPlusOne }
+  %br
+  is meta chapter (for example, "Concept Art" chapter) (invalidates sequential order):
+  = f.check_box :is_meta
+  %br
+  %br
+  chapter theme (title art in top right) (optional):
+  %br
+  = f.file_field :media
+  %br
+  %br
+  .actions
+    = f.submit 'Save'

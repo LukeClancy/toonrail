@@ -1,0 +1,18 @@
+= render 'page'
+- nav = page_surroundings(@page)
+.page_navigation
+  .page_start
+    - if nav[:start] != nil
+      = button_to 'Beginning', nav[:start], class: "button"
+    - else
+      = button_to 'Begining', nav[:start], class: "button disabled"
+  .page_last
+    = button_to 'Last', nav[:last], class: "button"
+  .page_next
+    = button_to 'Next', nav[:next], class: "button"
+  .page_end
+    = button_to 'End', nav[:end], class: "button"
+
+= link_to 'Edit', edit_page_path(@page), class: "btn"
+
+= link_to 'Back', pages_path, class: "btn"
