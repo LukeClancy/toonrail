@@ -4,4 +4,4 @@
   = image_tag(@page.media_url, class: "page_image") if @page.media
   %br
   %p.page_text
-    = @page.text
+    = sanitize_summernote @page.text

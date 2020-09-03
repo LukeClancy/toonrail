@@ -54,7 +54,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # throw in someathat image_magick cause actiontext broke.
-# lmao curveball run a "apt-get install image_magick' for some sick ass binaries
+# lmao curveball run a "apt-get install imagemagick' for some sick ass binaries
 # that should probably of been included in the package allready lmao yaassssss binaries!
 # have fun with that docker install biiiiiiiiitttttttttttc*
 
@@ -85,4 +85,11 @@ gem 'omniauth'
 gem 'simple_form'
 gem 'summernote-rails', '~> 0.8.12.0'
 
+#sudo apt install ruby-dev
+#sudo apt install postgresql
+#sudo apt install libpq-dev
+#sudo apt install nodejs
+#https://classic.yarnpkg.com/en/docs/install/#debian-stable
+#or i guess use a rails docker image, note that you still need the imagemagick apt above
 
+gem 'coffee-script', '~> 2.4', '>= 2.4.1'

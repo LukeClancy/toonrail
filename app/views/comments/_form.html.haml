@@ -1,0 +1,6 @@
+= form_with(model: comment) do |f|
+  = f.text_area :comment, 'data-provider': :summernote, class: "write_comment_comment"
+  - if comment != commentable #for editing
+    = f.hidden_field :target_class, value: commentable.class.to_s
+    = f.hidden_field :target_id, value: commentable.id
+  = f.submit

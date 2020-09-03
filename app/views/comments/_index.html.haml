@@ -1,0 +1,8 @@
+- if comment_level == 0
+  -#moving new comment will be handeled front end by custom javascript, that will move it around
+  -#when the reply button is hit. When this happens, the below commentable information as it pertains
+  -#to the form will change. The reason commentable is added is just to get it to render
+  .moving_new_comment{ class: "d-none" }
+    = render 'comments/new', commentable: commentable
+- for comment in commentable.comments.recent
+  = render 'comments/show', comment: comment, comment_level: comment_level, commentable: commentable

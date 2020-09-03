@@ -11,11 +11,10 @@
 // about supported directives.
 //
 //Rails Unobtrusive javascript
-//= require rails-ujs
 //
 //This is summernote, bootstrap, activestorage, turbolinks
 //= require jquery
-//= require jquery_ujs
+//= require rails-ujs
 //= require popper
 //= require bootstrap
 //= require summernote/summernote-bs4.min

@@ -32,7 +32,6 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-
   end
 
   # GET /pages/new
@@ -42,6 +41,9 @@ class PagesController < ApplicationController
     @page = Page.new
     @page.chapter_id = params[:chapter] if not params[:chapter].nil?
     @page.order = 0
+    if Chapter.first.nil?
+      redirect_to "/pages", notice: "make a chapter first"
+    end
     #default renders new
   end
 

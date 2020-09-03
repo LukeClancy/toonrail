@@ -2,10 +2,11 @@
 %html
   %head
     %title MidCity
-    = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tags
+    - #below had 'data-turbolinks-track': reload. yeeted because uuuuuugh csp headache like you wouldnt beleive
+    = stylesheet_link_tag 'application', media: 'all', nonce: true
+    = javascript_include_tag 'application', nonce: true
   %body
     = image_tag "MidCity2.png", class: "main-title"
     = link_to root_path do

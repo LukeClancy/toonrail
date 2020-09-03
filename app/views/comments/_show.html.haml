@@ -1,0 +1,53 @@
+-# the comment itself is right here
+.comment_and_children
+    .comment{ data: { id: "#{comment.id}" } }
+        .comment_bar{ class: "comment_level_#{comment_level}" }
+        .comment_rest
+            .comment_top_bar
+                = image_tag comment.user.avatar.url, class: "avatar"
+                .comment_top_bar_cols
+                    .comment_username
+                        %b
+                            = link_to comment.user.username, "users/#{comment.user.id}/comments"
+                        - if not commentable.nil? and commentable.class == Comment
+                            = image_tag "reply-fill.svg", class: "icon"
+                            %i= "#{commentable.user.username}"
+                    - last_act = "created"
+                    - if comment.created_at != comment.updated_at
+                        - last_act = "updated"
+                    .comment_time_ago
+                        %i= "#{last_act} #{time_ago_in_words comment.updated_at} ago"
+            .comment_text
+                -# @total_rendered_comments += 1
+                = sanitize_summernote comment.comment
+            .comment_low_bar
+                - if user_signed_in?
+                    - vote = current_user.voted_as_when_voted_for comment #actual vote handling will be done front-end probably.
+                    - logger.info("vote was #{vote.to_s}")
+                    %a{ class: "icon caret-up #{ "d-none" if vote == true }", cursor: "pointer" }
+                        =image_tag "caret-up"
+                    %a{ class: "icon caret-up-fill #{ "d-none" if vote != true}", cursor: "pointer" }
+                        = image_tag "caret-up-fill"
+                    %a{ class: "icon caret-down #{ "d-none" if vote == false }", cursor: "pointer" }
+                        = image_tag "caret-down"
+                    %a{ class: "icon caret-down-fill #{ "d-none" if vote != false }", cursor: "pointer" }
+                        = image_tag "caret-down-fill"
+                    %b.total_votes= "#{comment.weighted_score.to_s}"
+                    - if comment.user == current_user
+                        = link_to "edit", edit_comment_path(comment), class: "btn"
+                    = button_tag "reply", class: "btn reply_to_comment_button"
+                - else
+                    = link_to "users/sign_up" do
+                        = image_tag "caret-up", class: "icon"
+                    = link_to "users/sign_up" do
+                        = image_tag "caret-down" , class: "icon"
+                    %b.total_votes "#{comment.weighted_total.to_s}"
+                    = link_to "reply", '/users/sign_up', class: "btn"
+
+    -# and here are its children. comment_and_children should be set to collapsable
+    .children
+        - #this renders the comment's comments
+        - if comment_level == 4
+            = link_to "continue conversation", comment_path(comment), class: "btn"
+        - else
+            = render 'comments/index', commentable: comment, comment_level: comment_level += 1

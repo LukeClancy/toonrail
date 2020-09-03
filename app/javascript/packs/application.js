@@ -18,3 +18,18 @@ require("channels")
 
 require("trix")
 require("@rails/actiontext")
+
+//Q: WTF is this????
+//A: see https://discuss.rubyonrails.org/t/turbolinks-broken-by-default-with-a-secure-csp/74790
+//note: lines added in /config/content_security_policy too
+/*
+document.addEventListener("turbolinks:request-start", function(event) {
+    var xhr = event.data.xhr;
+    xhr.setRequestHeader("X-Turbolinks-Nonce", $("meta[name='csp-nonce']").prop('content'));
+});
+document.addEventListener("turbolinks:before-cache", function() {
+    $('script[nonce]').each(function(index, element) {
+      $(element).attr('nonce', element.nonce)
+    })
+});
+*/

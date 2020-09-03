@@ -1,18 +1,28 @@
 = render 'page'
-- nav = page_surroundings(@page)
+
 .page_navigation
+  - nav = page_surroundings(@page)
   .page_start
-    - if nav[:start] != nil
-      = button_to 'Beginning', nav[:start], class: "button"
-    - else
-      = button_to 'Begining', nav[:start], class: "button disabled"
+    - nav[:start] == nil ? status = "disabled" : status = ""
+    = button_to 'Beginning', nav[:start], class: "btn #{status}"
   .page_last
-    = button_to 'Last', nav[:last], class: "button"
+    - nav[:last] == nil ? status = "disabled" : status = ""
+    = button_to 'Last', nav[:last], class: "btn #{status}"
   .page_next
-    = button_to 'Next', nav[:next], class: "button"
+    - nav[:next] == nil ? status = "disabled" : status = ""
+    = button_to 'Next', nav[:next], class: "btn #{status}"
   .page_end
-    = button_to 'End', nav[:end], class: "button"
+    - nav[:end] == nil ? status = "disabled" : status = ""
+    = button_to 'End', nav[:end], class: "btn #{status}"
 
-= link_to 'Edit', edit_page_path(@page), class: "btn"
+.comments
+  %h3 Page Discussion, Write a Comment!
+  .fixed_form
+    = render 'comments/new', commentable: @page
+    
+  - @total_rendered_comments = 0
+  = render 'comments/index', commentable: @page, comment_level: 0
 
-= link_to 'Back', pages_path, class: "btn"
+- if @page.user == current_user
+  = link_to 'Edit', edit_page_path(@page), class: "btn"
+  = link_to 'Back', pages_path, class: "btn"
