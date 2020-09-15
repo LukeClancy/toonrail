@@ -71,15 +71,11 @@ $ ->
       comment_id.value = comment_data_id
 
   update_vote_info = (data, comment) ->
-    console.log("in update vt inf")
-    console.log(data)
     cu = $(comment).find('.caret-up')[0]
     cuf = $(comment).find('.caret-up-fill')[0]
     cd = $(comment).find('.caret-down')[0]
     cdf = $(comment).find('.caret-down-fill')[0]
-    console.log(data['liked'])
     if data['liked'] == true
-      console.log("AA")
       $(cu).addClass('d-none')
       $(cuf).removeClass('d-none')
     else
@@ -100,21 +96,16 @@ $ ->
       $(cu).removeClass('d-none')
 
     vote_count = $(comment).find('.total_votes')
-    console.log("vote count: " + data['vote_count'])
-    console.log(vote_count)
     vote_count.html(data['vote_count'])
 
   set_like_actions = ->
     $(".caret-up, .caret-up-fill").click (e) ->
       comment = get_comment(e.target)
-      console.log("Comment")
-      console.log(comment)
       comment_id = comment.getAttribute('data-id')
       $.ajax
         type: "PUT"
         url: "/comments/" + comment_id + "/up_vote"
         success: (data) ->
-          console.log("upvote suc")
           update_vote_info(data, comment)
 
     $(".caret-down, .caret-down-fill").click (e) ->

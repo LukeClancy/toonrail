@@ -240,9 +240,9 @@ module ApplicationHelper
       conflict = Chapter.where(order: moved.order).where.not(id: moved.id).first
     end
     if not conflict.nil?
-      __bumpMe(conflict)
       conflict.order += 1
       conflict.save
+      __bumpMe(conflict)
     end
   end
   def _bumpMe(moved)
