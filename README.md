@@ -31,21 +31,21 @@ Project Info:
   2. follow the installation / setup section ABOVE (yes up there) until you hit database creation.
   3. log onto postgres: run 'sudo -u postgres psql'
   4. create the databases:
-    - 'CREATE DATABASE toonrail_dev;'
-    - 'CREATE DATABASE toonrail_tst;'
-    - 'CREATE DATABASE toonrail_prod;'
+      - 'CREATE DATABASE toonrail_dev;'
+      - 'CREATE DATABASE toonrail_tst;'
+      - 'CREATE DATABASE toonrail_prod;'
   5. sidenotes:
-    - '\l' will list the databases
-    - '\connect toonrail_dev' connects to the development database so you can write sql on it (aka 'SELECT * FROM pages;')
-    - '\d' will list the diffrent tables in a database
+      - '\l' will list the databases
+      - '\connect toonrail_dev' connects to the development database so you can write sql on it (aka 'SELECT * FROM pages;')
+      - '\d' will list the diffrent tables in a database
   6. set a password to connect to postgres
-    1. [create a postgres password](https://www.postgresqltutorial.com/postgresql-change-password/)
-    2. get out of psql
-    3. in the root directory run 'EDITOR="atom --wait" bin/rails credentials:edit', [more info](https://medium.com/@thorntonbrenden/rails-and-the-legendary-master-key-15c8be7799f1)
-    4. set the 'database_default_password' enviroment variable used in config/database.yml. All passwords, keys, and localized configuration should be set here.
+      1. [create a postgres password](https://www.postgresqltutorial.com/postgresql-change-password/)
+      2. get out of psql
+      3. in the root directory run 'EDITOR="atom --wait" bin/rails credentials:edit', [more info](https://medium.com/@thorntonbrenden/rails-and-the-legendary-master-key-15c8be7799f1)
+      4. set the 'database_default_password' enviroment variable used in config/database.yml. All passwords, keys, and localized configuration should be set here.
   7. autopopulate schema: 
-    1. From the root directory run 'rails db:schema:load'
-    2. you can check that the production database was properly set up in psql, if you like
+      1. From the root directory run 'rails db:schema:load'
+      2. you can check that the production database was properly set up in psql, if you like
 
 * How to run the test suite: run 'rspec' from the project root. [Read more about rspec](https://github.com/rspec/rspec)
 
