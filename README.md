@@ -24,7 +24,7 @@ Project Info:
 
 * System dependencies: look in the Gemfile for gems and system files
 
-* Configuration: Public configuration not yet set.
+* Configuration: Public configuration not yet set, passwords etc currently utilizing [master.key](https://medium.com/@thorntonbrenden/rails-and-the-legendary-master-key-15c8be7799f1)
 
 * Database creation / initialization:
   1. if you are NOT using postgres, go install needed packages and gems for yourdatabase, and then modify config/database.yml accordingly
