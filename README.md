@@ -52,3 +52,15 @@ Project Info:
 * Services (job queues, cache servers, search engines, etc.): will connect to google, twitter and facebook for ease of signup
 
 * Deployment instructions: we are not there yet, but probably heroku
+
+* Notable technologies developers may encounter
+  1. [acts as commentable](https://github.com/jackdempsey/acts_as_commentable) streamlines our commenting backend code in controllers and models
+  2. [acts as voteable](https://github.com/ryanto/acts_as_votable) streamlines how we vote on comments and pages
+  3. [haml](https://github.com/haml/haml-rails) simplifies our views
+  4. [devise](https://github.com/heartcombo/devise) handles our authentication logic
+  5. [summernote](https://summernote.org/) is our user friendly front end WYSIWYG editor
+  6. [simpleform](https://github.com/heartcombo/simple_form) can be helpful in quickly writing forms
+  7. [carrierwave](https://github.com/carrierwaveuploader/carrierwave) handles file uploads and downloads (especially with pictures from summernote)
+  8. [rspec-rails](https://github.com/rspec/rspec-rails) and [factory-bot-rails](https://github.com/thoughtbot/factory_bot_rails) are our testing framework
+  9. [sass](https://github.com/rails/sass-rails), [bootstrap](https://github.com/twbs/bootstrap-rubygem), [jquery](https://github.com/rails/jquery-rails) and [coffee-script](https://coffeescript.org/) drive our front end design.
+  
