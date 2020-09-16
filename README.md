@@ -51,7 +51,7 @@ Project Info:
 
 * How to run the test suite: run 'rspec' from the project root. [Read more about rspec](https://github.com/rspec/rspec)
 
-* Services (job queues, cache servers, search engines, etc.): will connect to google, twitter and facebook for ease of signup
+* Services (job queues, cache servers, search engines, etc.): will connect to google, twitter, disqus, discord and facebook for ease of signup
 
 * Deployment instructions: we are not there yet, but probably heroku
 
