@@ -1,12 +1,12 @@
 # TOONRAIL
 Pet project to learn ruby on rails. The project idea is to create a website for MidCity along the lines of other web comic websites. MidCity is a future pet project I have thought about every now and again. Once the website functionality is acceptable, I plan to create a customizable site usable by any web comic creator with easy setup.
 
-# PICTURES
+## PICTURES
 ![main-page](.pics/main-page.png)
 ![write-coms](.pics/write_a_comment.png)
 ![coms2](.pics/comments-2.png)
 
-# README
+## README
 
 If there are any extra steps that had to be taken which I forgot about, or mistakes made, please edit this README.
 
