@@ -56,7 +56,7 @@ Project Info:
 * Notable technologies developers may encounter
   1. [acts as commentable](https://github.com/jackdempsey/acts_as_commentable) streamlines our commenting backend code in controllers and models
   2. [acts as voteable](https://github.com/ryanto/acts_as_votable) streamlines how we vote on comments and pages
-  3. [haml](https://github.com/haml/haml-rails) simplifies our views
+  3. [haml](https://github.com/haml/haml-rails) simplifies our view code dramatically
   4. [devise](https://github.com/heartcombo/devise) handles our authentication logic
   5. [summernote](https://summernote.org/) is our user friendly front end WYSIWYG editor
   6. [simpleform](https://github.com/heartcombo/simple_form) can be helpful in quickly writing forms
