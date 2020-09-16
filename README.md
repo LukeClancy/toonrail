@@ -44,7 +44,7 @@ Project Info:
       1. [create a postgres password](https://www.postgresqltutorial.com/postgresql-change-password/)
       2. get out of psql
       3. in the root directory run 'EDITOR="atom --wait" bin/rails credentials:edit', [more info](https://medium.com/@thorntonbrenden/rails-and-the-legendary-master-key-15c8be7799f1)
-          - set the 'database_default_password' enviroment variable used in config/database.yml. All passwords, keys, and localized configuration should be set here.
+          - set the 'database_default_password' enviroment variable used in config/database.yml. All passwords, keys, and localized configuration should be set using credentials:edit
   7. autopopulate schema: 
       1. From the root directory run 'rails db:schema:load'
       2. you can check that the production database was properly set up in psql, if you like
