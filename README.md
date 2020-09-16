@@ -64,5 +64,5 @@ Project Info:
   6. [simpleform](https://github.com/heartcombo/simple_form) can be helpful in quickly writing forms
   7. [carrierwave](https://github.com/carrierwaveuploader/carrierwave) handles file uploads and downloads (especially with pictures from summernote)
   8. [rspec-rails](https://github.com/rspec/rspec-rails) and [factory-bot-rails](https://github.com/thoughtbot/factory_bot_rails) are our testing framework
-  9. [sass](https://github.com/rails/sass-rails) ([more](https://sass-lang.com/)), [bootstrap](https://github.com/twbs/bootstrap-rubygem) ([more](https://getbootstrap.com/docs/4.1/getting-started/introduction/)), [jquery](https://github.com/rails/jquery-rails) [1](https://api.jquery.com/category/selectors/) and [coffee-script](https://coffeescript.org/) drive our front end design.
+  9. [sass](https://github.com/rails/sass-rails) ([more](https://sass-lang.com/)), [bootstrap](https://github.com/twbs/bootstrap-rubygem) ([more](https://getbootstrap.com/docs/4.1/getting-started/introduction/)), [jquery](https://github.com/rails/jquery-rails) ([more](https://api.jquery.com/category/selectors/)) and [coffee-script](https://coffeescript.org/) drive our front end design.
   
