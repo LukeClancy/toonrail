@@ -1,10 +1,12 @@
+# TOONRAIL
 Pet project to learn ruby on rails. The project idea is to create a website for MidCity along the lines of other web comic websites. MidCity is a future pet project I have thought about every now and again. Once the website functionality is acceptable, I plan to create a customizable site usable by any web comic creator with easy setup.
 
-# PICTURES
+## PICTURES
+![main-page](.pics/main-page.png)
+![write-coms](.pics/write_a_comment.png)
+![coms2](.pics/comments-2.png)
 
-
-
-# README
+## README
 
 If there are any extra steps that had to be taken which I forgot about, or mistakes made, please edit this README.
 
@@ -42,14 +44,14 @@ Project Info:
       1. [create a postgres password](https://www.postgresqltutorial.com/postgresql-change-password/)
       2. get out of psql
       3. in the root directory run 'EDITOR="atom --wait" bin/rails credentials:edit', [more info](https://medium.com/@thorntonbrenden/rails-and-the-legendary-master-key-15c8be7799f1)
-      4. set the 'database_default_password' enviroment variable used in config/database.yml. All passwords, keys, and localized configuration should be set here.
+          - set the 'database_default_password' enviroment variable used in config/database.yml. All passwords, keys, and localized configuration should be set using credentials:edit
   7. autopopulate schema: 
       1. From the root directory run 'rails db:schema:load'
       2. you can check that the production database was properly set up in psql, if you like
 
 * How to run the test suite: run 'rspec' from the project root. [Read more about rspec](https://github.com/rspec/rspec)
 
-* Services (job queues, cache servers, search engines, etc.): will connect to google, twitter and facebook for ease of signup
+* Services (job queues, cache servers, search engines, etc.): will connect to google, twitter, disqus, discord and facebook for ease of signup
 
 * Deployment instructions: we are not there yet, but probably heroku
 
@@ -62,5 +64,5 @@ Project Info:
   6. [simpleform](https://github.com/heartcombo/simple_form) can be helpful in quickly writing forms
   7. [carrierwave](https://github.com/carrierwaveuploader/carrierwave) handles file uploads and downloads (especially with pictures from summernote)
   8. [rspec-rails](https://github.com/rspec/rspec-rails) and [factory-bot-rails](https://github.com/thoughtbot/factory_bot_rails) are our testing framework
-  9. [sass](https://github.com/rails/sass-rails) | [+](https://sass-lang.com/), [bootstrap](https://github.com/twbs/bootstrap-rubygem) | [+](https://getbootstrap.com/docs/4.1/getting-started/introduction/), [jquery](https://github.com/rails/jquery-rails) | [+](https://api.jquery.com/category/selectors/) and [coffee-script](https://coffeescript.org/) drive our front end design.
+  9. [sass](https://github.com/rails/sass-rails) ([more](https://sass-lang.com/)), [bootstrap](https://github.com/twbs/bootstrap-rubygem) ([more](https://getbootstrap.com/docs/4.1/getting-started/introduction/)), [jquery](https://github.com/rails/jquery-rails) ([more](https://api.jquery.com/category/selectors/)) and [coffee-script](https://coffeescript.org/) drive our front end design.
   
