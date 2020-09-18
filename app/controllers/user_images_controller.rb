@@ -1,12 +1,12 @@
 class UserImagesController < ApplicationController
     before_action do
-        raise StandardError.new("user must be signed in") if not user_signed_in?
+        head(:forbidden) if not user_signed_in?
     end
     before_action only: [:destroy] do
         @user_image = UserImage.find(params[:id])
         #if they are not the user, and are not an admin, block
         if @user_image.user != current_user and not helpers.is_admin?()
-            raise StandardError.new("not the right user")
+            head :forbidden
         end
     end
     

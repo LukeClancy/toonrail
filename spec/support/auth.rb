@@ -45,9 +45,32 @@ module Auth
     end
 end
 =end
+#module AuthHelpers
+  def get_a_admin_id()
+    admin = User.where(role: 'admin').order(id: :desc).first
+    if admin == nil
+      return 0
+    end
+    return admin.id
+  end
+  def get_a_user_id()
+    user = User.all.order(id: :desc).first
+    if user == nil
+      return 0
+    end
+    return user.id
+  end
+#end
 
 
 RSpec.shared_context 'unauthenticated user' do
+  before(:each) do
+    if not @user.nil?
+      @user = nil
+    end
+  end
+  after(:each) do
+  end  
 end
 RSpec.shared_context 'authenticated user' do
     before(:each) do
@@ -61,6 +84,7 @@ RSpec.shared_context 'authenticated user' do
     end
     after(:each) do
         sign_out(@user)
+        @user = nil
     end
 end
 RSpec.shared_context 'admin user' do
@@ -75,5 +99,6 @@ RSpec.shared_context 'admin user' do
     end
     after(:each) do
         sign_out(@user)
+        @user = nil
     end
 end

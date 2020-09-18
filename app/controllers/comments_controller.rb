@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
     before_action only: [:edit, :update, :new, :create, :destroy, :up_vote, :down_vote] do
         if not user_signed_in?
-            raise StandardError.new("sign in plz")
+            head :forbidden
         end
     end
     before_action only: [:destroy, :show, :edit, :update, :up_vote, :down_vote] do
@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     end
     before_action only: [:destroy, :update, :edit] do
         if ( not user_signed_in? or not current_user == @comment.user ) and (not helpers.is_admin?)
-            raise StandardError.new("cant destroy the comment, not right user")
+            head :forbidden
         end
     end
 
@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
         elsif comment_params[:target_class] == "Comment"
             cls = Comment
         else
-            raise StandardError.new("comment father not valid")
+            head :error
         end
         father = cls.find(comment_params[:target_id].to_i)
         @comment = father.comments.create

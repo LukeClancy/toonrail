@@ -11,4 +11,5 @@ class ApplicationController < ActionController::Base
     def show
       render 'layouts/application'
     end
+    
 end

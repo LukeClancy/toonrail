@@ -11,7 +11,7 @@ module ApplicationHelper
     if is_admin?
       return true
     else
-      raise StandardError.new("not an admin!")
+      controller.head :forbidden
     end
   end
   def get_meta_chapters()

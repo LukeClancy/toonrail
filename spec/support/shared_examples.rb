@@ -1,5 +1,5 @@
 def is_ordered?(maybe_ordered)
-    maybe_ordered.sort { |a, b| a.order <=> b.order }
+    maybe_ordered = maybe_ordered.sort { |a, b| a.order <=> b.order }
     x = 1
     maybe_ordered.each do |ob|
         if ob.order != x
