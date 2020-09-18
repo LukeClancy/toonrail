@@ -20,11 +20,11 @@ RSpec.shared_examples "it is ordered" do
 end
 
 RSpec.shared_examples "it is ordered on parent" do
-    let(:grouped_maybe_ordered) { maybe_ordered.group_by(parent_name_id) }
+    let(:grouped_maybe_ordered) { maybe_ordered.group_by{ |v| v[parent_column_name] } }
     it "its groups are ordered from 1 to x where x is group member count" do
         group_orders = []
-        for maybe_ordered in grouped_maybe_ordered
-            group_orders << is_ordered?(maybe_ordered)
+        grouped_maybe_ordered.each do |k, v|
+            group_orders << is_ordered?(v)
         end
         expect(group_orders).to_not include(false)
     end

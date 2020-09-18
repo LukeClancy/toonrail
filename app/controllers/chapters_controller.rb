@@ -1,6 +1,5 @@
 class ChaptersController < ApplicationController
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
-  after_action :fillGaps, only: [:destroy, :update, :edit]
   before_action only: [:edit, :update, :new, :create, :destroy] do
     helpers.is_admin!
   end
@@ -39,17 +38,13 @@ class ChaptersController < ApplicationController
     logger.info("chapter_params: #{chapter_params}")
     @chapter = Chapter.new(chapter_params)
     @chapter.user_id = current_user.id
-    ActiveRecord::Base.transaction do 
-      translateOrder #<- we need transaction for this
-      respond_to do |format|
-        if @chapter.save
-          format.html { redirect_to new_page_path, notice: 'Chapter was successfully created.' }
-          format.json { render :show, status: :created, location: @chapter }
-        else
-          format.html { render :new }
-          format.json { render json: @chapter.errors, status: :unprocessable_entity }
-          raise ActiveRecord::Rollback #signals to undo transaction without upstream error trigger
-        end
+    respond_to do |format|
+      if @chapter.save
+        format.html { redirect_to new_page_path, notice: 'Chapter was successfully created.' }
+        format.json { render :show, status: :created, location: @chapter }
+      else
+        format.html { render :new, status: :internal_server_error }
+        format.json { render json: @chapter.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,17 +52,13 @@ class ChaptersController < ApplicationController
   # PATCH/PUT /chapters/1
   # PATCH/PUT /chapters/1.json
   def update
-    ActiveRecord::Base.transaction do 
-      translateOrder #<- we need transaction for this
-      respond_to do |format|
-        if @chapter.update(chapter_params)
-          format.html { redirect_to helpers.sequential_chapter_url(@chapter), notice: 'Chapter was successfully updated.' }
-          format.json { render :show, status: :ok, location: @chapter }
-        else
-          format.html { render :edit }
-          format.json { render json: @chapter.errors, status: :unprocessable_entity }
-          raise ActiveRecord::Rollback #signals to undo transaction without upstream error trigger
-        end
+    respond_to do |format|
+      if @chapter.update(chapter_params)
+        format.html { redirect_to helpers.sequential_chapter_url(@chapter), notice: 'Chapter was successfully updated.' }
+        format.json { render :show, status: :ok, location: @chapter }
+      else
+        format.html { render :edit, status: :internal_server_error }
+        format.json { render json: @chapter.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -75,13 +66,20 @@ class ChaptersController < ApplicationController
   # DELETE /chapters/1
   # DELETE /chapters/1.json
   def destroy
-    for page in @chapter.pages
-      page.destroy
-    end
-    @chapter.destroy
-    respond_to do |format|
-      format.html { redirect_to chapters_url, notice: 'Chapter was successfully destroyed.' }
-      format.json { head :no_content }
+    ActiveRecord::Base.transaction do
+      for page in @chapter.pages
+        page.destroy
+      end
+      respond_to do |format|
+        if @chapter.destroy
+          format.html { redirect_to chapters_url, notice: 'Chapter was successfully destroyed.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to chapters_url, status: :internal_server_error, notice: 'Please try again, the chapter failed to destroy in our database!'}
+          format.json { head :error }
+          raise ActiveRecord::Rollback
+        end
+      end
     end
   end
 
@@ -89,19 +87,6 @@ class ChaptersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_chapter
       @chapter = Chapter.find_by(order: params[:order])
-    end
-
-    def translateOrder(chap = @chapter)
-      helpers._translateOrder(chap)
-    end
-
-    def fillGaps
-      #ex: order of 1,2,3,5 -> 1,2,3,4
-      helpers._fillGaps(Chapter.all)
-    end
-
-    def bumpMe(movedChapter = @chapter)
-      helpers._bumpMe(movedChapter)
     end
 
     # Only allow a list of trusted parameters through.

@@ -60,7 +60,13 @@ end
     end
     return user.id
   end
-#end
+  def get_create_admin()
+    a = get_a_admin_id()
+    if a == 0
+      return create(:admin).id
+    end
+    return a
+  end
 
 
 RSpec.shared_context 'unauthenticated user' do

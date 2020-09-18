@@ -15,13 +15,6 @@ def cpar_order(tag)
 end
 
 RSpec.describe ChaptersController, type: :controller do
-    let(:mock_params) { {
-        chapter: attributes_for(:chapter_create_params)
-    } }
-    let(:mock_existing_params) {{
-        chapter: attributes_for(:chapter_update_params)
-    }}
-
     context 'with unauthenticated user' do
         include_context 'unauthenticated user'
         it "is not creatable" do
@@ -80,21 +73,9 @@ RSpec.describe ChaptersController, type: :controller do
         end
         include_context 'chapters exist'
         it "is updateable" do
-            oldlog = ActiveRecord::Base.logger
-            ActiveRecord::Base.logger = nil
             para = cpar_order(:chapter_update_params) 
-            Rails.logger.info("chapters exists is updateable")
-            Rails.logger.info(para.inspect)
-            for c in Chapter.all
-                Rails.logger.info(c.inspect)
-            end
-            Rails.logger.info("_________________________________________")
             patch :update, params: para
             expect(response).to have_http_status(:found)
-            for c in Chapter.all
-                Rails.logger.info(c.inspect)
-            end
-            ActiveRecord::Base.logger = oldlog
             expect(Chapter.find_by(order: para[:order]).title).to include("update")
         end
         it "is destroyable" do
