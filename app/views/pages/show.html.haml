@@ -1,19 +1,24 @@
-= render 'page'
 
+%h3.page_title
+  = "#{@page.chapter.title} - #{@page.title}"
+= render 'page'
 .page_navigation
   - nav = page_surroundings(@page)
   .page_start
     - nav[:start] == nil ? status = "disabled" : status = ""
-    = button_to 'Beginning', nav[:start], class: "btn #{status}"
+    = button_to 'Beginning', nav[:start], class: "btn #{status}", method: :get
   .page_last
     - nav[:last] == nil ? status = "disabled" : status = ""
-    = button_to 'Last', nav[:last], class: "btn #{status}"
+    = button_to 'Last', nav[:last], class: "btn #{status}", method: :get
   .page_next
     - nav[:next] == nil ? status = "disabled" : status = ""
-    = button_to 'Next', nav[:next], class: "btn #{status}"
+    = button_to 'Next', nav[:next], class: "btn #{status}", method: :get
   .page_end
     - nav[:end] == nil ? status = "disabled" : status = ""
-    = button_to 'End', nav[:end], class: "btn #{status}"
+    = button_to 'End', nav[:end], class: "btn #{status}", method: :get
+
+%p.page_text
+  = sanitize_summernote @page.text
 
 .comments
   %h3 Page Discussion, Write a Comment!

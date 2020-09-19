@@ -32,7 +32,9 @@
     @extend .pb-3;
 }
 .page_navigation {
-    @extend .row;
+    //@extend .row;
+    @extend .d-flex;
+    @extend .justify-content-around;
 }
 .side-bar {
     @extend .col-2;
