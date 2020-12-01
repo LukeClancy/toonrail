@@ -4,7 +4,10 @@
         .comment_bar{ class: "comment_level_#{comment_level}" }
         .comment_rest
             .comment_top_bar
-                = image_tag comment.user.avatar.url, class: "avatar"
+                - if not comment.user.avatar.url.nil?
+                    = image_tag comment.user.avatar.url, class: "avatar"
+                - else
+                    = image_tag "person-fill", class: "avatar"
                 .comment_top_bar_cols
                     .comment_username
                         %b
@@ -37,11 +40,11 @@
                         = link_to "edit", edit_comment_path(comment), class: "btn"
                     = button_tag "reply", class: "btn reply_to_comment_button"
                 - else
-                    = link_to "users/sign_up" do
+                    = link_to "/users/sign_up" do
                         = image_tag "caret-up", class: "icon"
-                    = link_to "users/sign_up" do
+                    = link_to "/users/sign_up" do
                         = image_tag "caret-down" , class: "icon"
-                    %b.total_votes "#{comment.weighted_total.to_s}"
+                    %b.total_votes= "#{comment.weighted_score.to_s}"
                     = link_to "reply", '/users/sign_up', class: "btn"
 
     -# and here are its children. comment_and_children should be set to collapsable
